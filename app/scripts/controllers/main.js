@@ -32,14 +32,63 @@ angular.module('snapshotApp')
 			//新建结点数组
 			var nodesFinal = [];
 			for (var i = 0; i < nodes.length; i++) {
+				/*将每个结点中的时间字符串替换成秒数值*/
 				// 获得时间的字符串
 				var slicetime = (nodes[i].match(timeRegExp))[0];
 				// 转换成时间对象
-				var date=new Date(slicetime);
+				var date = new Date(slicetime);
 				// 将时间对象转换成秒数
-		        var time=date.getTime();
-		        // 替换nodes中的时间字符串为秒数
-		        nodes[i]=nodes[i].replace(slicetime,time.toString());  //日期替换成秒数
+				var time = date.getTime();
+				// 替换nodes中的时间字符串为秒数
+				nodes[i] = nodes[i].replace(slicetime, time.toString()); //日期替换成秒数
+
+				/*对每个结点分割成id, date, animal*/
+				// 对每个结点针对空格和换行符进行分割,可对正则表达式进行扩展
+				var itemArray = nodes[i].split(/[ \n]/g);
+				// 初始化结点对象
+				var item = {
+					'id': itemArray[0],
+					'time': parseInt(itemArray[1]),
+					'animal': {}
+				};
+				// console.log(itemArray);
+
+				// 对每个结点的animal属性进行分割
+				// itemArray[0]是id，itemArray[1]是time，animal属性从itemArray[2]开始
+				var animalName, animalNameIndex = 0;
+				for (var j = 2; j < itemArray.length; j++) { 
+
+					if (isNaN(parseInt(itemArray[j]))) { //不能转换到int，说明是animal的名称，否则是animal坐标
+						//historyData合法性，如果出现只有x没有y的情况，则animalNameIndex为奇数
+						// if (animalNameIndex % 2 == 1) {
+						// 	console.log("Invalid format.");
+						// 	return;
+						// }
+						//把名称作为属性
+						item['animal'][itemArray[j]]={};
+						//保存这个key的名字，方便后续插入属性值
+						animalName = itemArray[j]; 
+						//保存这个key的位置
+						animalNameIndex = j; 
+					} else {
+						if (j - animalNameIndex == 1)
+							item['animal'][animalName]['origX'] = parseInt(itemArray[j]);
+						else if (j - animalNameIndex == 2)
+							item['animal'][animalName]['origY'] = parseInt(itemArray[j]);
+						else if (j - animalNameIndex == 3)
+							item['animal'][animalName]['x'] = parseInt(itemArray[j]);
+						else if (j - animalNameIndex == 4)
+							item['animal'][animalName]['y'] = parseInt(itemArray[j]);
+						else {
+							console.log("Invalid format.");
+							return;
+						}
+					}
+				}
+				console.log(item);
 			}
+
+
+
 		};
 	});
