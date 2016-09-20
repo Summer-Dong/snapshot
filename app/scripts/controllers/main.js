@@ -8,11 +8,12 @@ angular.module('snapshotApp')
 		vm.getSnapshot = function(historyData, id) {
 			historyData = vm.inputHistoryData;
 			// 时间的正则表达式
-			var timeRegular = RegExp(/[1-9][0-9]{3}\/[0-1][0-9]\/[0-3][0-9] [0-9]{2}:[0-9]{2}:[0-9]{2}/g);
+			var timeRegExp = RegExp(/[1-9][0-9]{3}\/[0-1][0-9]\/[0-3][0-9] [0-9]{2}:[0-9]{2}:[0-9]{2}/g);
 			// 获得时间组成的数组
-			var timeArray = historyData.match(timeRegular);
+			var timeArray = historyData.match(timeRegExp);
 			// 获得时间id的长度
 			var idLength = historyData.indexOf(timeArray[0]);
+
 
 			/*分割结点组成的数组*/
 			var nodes = [];
@@ -23,9 +24,22 @@ angular.module('snapshotApp')
 				nodes.push(historyData.substring(start, end - 1));
 			}
 			//单独处理i在末尾的情况
-			var start = historyData.indexOf(timeArray[i]) - idLength; 
+			var start = historyData.indexOf(timeArray[i]) - idLength;
 			nodes.push(historyData.substring(start));
- 
-					
+
+
+			/*处理每个结点*/
+			//新建结点数组
+			var nodesFinal = [];
+			for (var i = 0; i < nodes.length; i++) {
+				// 获得时间的字符串
+				var slicetime = (nodes[i].match(timeRegExp))[0];
+				// 转换成时间对象
+				var date=new Date(slicetime);
+				// 将时间对象转换成秒数
+		        var time=date.getTime();
+		        // 替换nodes中的时间字符串为秒数
+		        nodes[i]=nodes[i].replace(slicetime,time.toString());  //日期替换成秒数
+			}
 		};
 	});
