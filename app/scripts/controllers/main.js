@@ -115,6 +115,21 @@ angular.module('snapshotApp')
 			}
 			console.log(nodesFinal);
 
+			//判断输入id所位于的结点，如果没有找到，报错。
+			var idIndex;
+			for (var i = 0; i < nodesFinal.length; i++) {
+				if (nodesFinal[i].id == id) {
+					idIndex = i;
+					break;
+				}
+			}
+			//输入id没有找到
+			if (i == nodesFinal.length) {
+				vm.result = "Invalid id.";
+				console.log("Invalid id.");
+				return;
+			}
+
 		};
 
 
