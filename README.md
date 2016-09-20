@@ -1,4 +1,6 @@
-# snapshot
+# snapshot[![Build Status](https://travis-ci.org/Summer-Dong/snapshot.svg?branch=master)](https://travis-ci.org/Summer-Dong/snapshot)
+=======================================================================================================================
+
   
 ####Framework:
   AngularJS + Bootstrap
