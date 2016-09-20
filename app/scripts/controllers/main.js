@@ -6,6 +6,7 @@ angular.module('snapshotApp')
 		vm.inputHistoryData = "e4e87cb2-8e9a-4749-abb6-26c59344dfee 2016/09/02 22:30:46 cat1 10 9 351055db-33e6-4f9b-bfe1-16f1ac446ac1 2016/09/02 22:30:52 cat1 10 9 2 -1 cat2 2 3 dcfa0c7a-5855-4ed2-bc8c-4accae8bd155 2016/09/02 22:31:02 cat1 12 8 3 4";
 		vm.ID = "";
 		vm.getSnapshot = function(historyData, id) {
+			vm.result = "";
 			historyData = vm.inputHistoryData;
 			// 时间的正则表达式
 			var timeRegExp = RegExp(/[1-9][0-9]{3}\/[0-1][0-9]\/[0-3][0-9] [0-9]{2}:[0-9]{2}:[0-9]{2}/g);
@@ -42,7 +43,7 @@ angular.module('snapshotApp')
 				// 替换nodes中的时间字符串为秒数
 				nodes[i] = nodes[i].replace(slicetime, time.toString()); //日期替换成秒数
 
-				/*对每个结点分割成id, date, animal*/
+				/*对每个结点都分割成id, date, animal*/
 				// 对每个结点针对空格和换行符进行分割,可对正则表达式进行扩展
 				var itemArray = nodes[i].split(/[ \n]/g);
 				// 初始化结点对象
@@ -51,25 +52,28 @@ angular.module('snapshotApp')
 					'time': parseInt(itemArray[1]),
 					'animal': {}
 				};
-				// console.log(itemArray);
 
 				// 对每个结点的animal属性进行分割
 				// itemArray[0]是id，itemArray[1]是time，animal属性从itemArray[2]开始
-				var animalName, animalNameIndex = 0;
-				for (var j = 2; j < itemArray.length; j++) { 
+				var animalName, animalNameIndex = -1;
+				for (var j = 2; j < itemArray.length; j++) {
+					//不能转换到int，说明是animal的名称，否则是animal坐标
+					if (isNaN(parseInt(itemArray[j]))) {
+						//historyData合法性，如果出现x/y只有一个或者(后两种判断)一个都没有的情况，则animalNameIndex为奇数
+						if ((j - animalNameIndex) % 2 == 0 || (j - animalNameIndex == 1) || j==itemArray.length-1) {
+							console.log("Invalid format.");
+							vm.result = "Invalid format.";
+							return;
+						}
 
-					if (isNaN(parseInt(itemArray[j]))) { //不能转换到int，说明是animal的名称，否则是animal坐标
-						//historyData合法性，如果出现只有x没有y的情况，则animalNameIndex为奇数
-						// if (animalNameIndex % 2 == 1) {
-						// 	console.log("Invalid format.");
-						// 	return;
-						// }
+
 						//把名称作为属性
-						item['animal'][itemArray[j]]={};
+						item['animal'][itemArray[j]] = {};
 						//保存这个key的名字，方便后续插入属性值
-						animalName = itemArray[j]; 
+						animalName = itemArray[j];
 						//保存这个key的位置
-						animalNameIndex = j; 
+						animalNameIndex = j;
+
 					} else {
 						if (j - animalNameIndex == 1)
 							item['animal'][animalName]['origX'] = parseInt(itemArray[j]);
@@ -81,14 +85,24 @@ angular.module('snapshotApp')
 							item['animal'][animalName]['y'] = parseInt(itemArray[j]);
 						else {
 							console.log("Invalid format.");
+							vm.result = "Invalid format.";
 							return;
 						}
-					}
+					}//数值结点判断结束
+				}
+
+				//当最后一个动物的记录格式有错时的判断
+				if ((itemArray.length - animalNameIndex) % 2 == 0) {
+					console.log("Invalid format.");
+					vm.result = "Invalid format.";
 				}
 				console.log(item);
-			}
+			} //for循环结束
 
 
 
 		};
+
+
+
 	});
