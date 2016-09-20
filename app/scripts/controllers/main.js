@@ -30,7 +30,7 @@ angular.module('snapshotApp')
 
 
 			/*处理每个结点*/
-			//新建结点数组
+			//新建结点数组，保存结点被处理后的结点值
 			var nodesFinal = [];
 			for (var i = 0; i < nodes.length; i++) {
 				/*将每个结点中的时间字符串替换成秒数值*/
@@ -60,7 +60,9 @@ angular.module('snapshotApp')
 					//不能转换到int，说明是animal的名称，否则是animal坐标
 					if (isNaN(parseInt(itemArray[j]))) {
 						//historyData合法性，如果出现x/y只有一个或者(后两种判断)一个都没有的情况，则animalNameIndex为奇数
-						if ((j - animalNameIndex) % 2 == 0 || (j - animalNameIndex == 1) || j==itemArray.length-1) {
+						//(j - animalNameIndex == 1)：判断的是cat1 cat2 2 3 的情况
+						//j==itemArray.length-1：判断的是cat1 10 9 2 -1 cat2的情况
+						if ((j - animalNameIndex) % 2 == 0 || (j - animalNameIndex == 1) || j == itemArray.length - 1) {
 							console.log("Invalid format.");
 							vm.result = "Invalid format.";
 							return;
@@ -88,7 +90,7 @@ angular.module('snapshotApp')
 							vm.result = "Invalid format.";
 							return;
 						}
-					}//数值结点判断结束
+					} //数值结点判断结束
 				}
 
 				//当最后一个动物的记录格式有错时的判断
@@ -96,10 +98,22 @@ angular.module('snapshotApp')
 					console.log("Invalid format.");
 					vm.result = "Invalid format.";
 				}
-				console.log(item);
-			} //for循环结束
+				// 处理完每个结点后push到最终数组中
+				nodesFinal.push(item);
+			} //处理每个结点的for循环结束
 
-
+			//对时间冒泡排序
+			for (var i = nodesFinal.length - 1; i >= 1; i--) {
+				for (var j = 0; j < i; j++) {
+					var tmp;
+					if (nodesFinal[j].time > nodesFinal[j + 1].time) {
+						tmp = nodesFinal[j];
+						nodesFinal[j] = nodesFinal[j + 1];
+						nodesFinal[j + 1] = tmp;
+					}
+				}
+			}
+			console.log(nodesFinal);
 
 		};
 
