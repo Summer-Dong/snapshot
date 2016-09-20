@@ -2,9 +2,10 @@
 
 angular.module('snapshotApp')
 	.controller('MainCtrl', function() {
-		// this.awesomeThings = [
-		// 	'HTML5 Boilerplate',
-		// 	'AngularJS',
-		// 	'Karma'
-		// ];
+		var vm = this;
+		vm.inputHistoryData = "";
+		vm.ID = "";
+		vm.getSnapshot = function(historyData, id){
+			
+		}
 	});

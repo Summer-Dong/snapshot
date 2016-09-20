@@ -7,8 +7,8 @@
 
 body {
     padding: 0;
-    background: #555555;
-}
+/*    background: #eee;
+*/}
 
 a {
     float: right;
@@ -88,7 +88,7 @@ a {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width:768px) {
     .container {
-        max-width: 770px;
+        max-width: 970px;
     }
 
     /* Remove the padding we set earlier */
