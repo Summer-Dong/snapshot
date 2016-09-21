@@ -20,8 +20,8 @@ angular.module('snapshotApp')
 						var lastY = animalStatus[j].y;
 						//累加的坐标与实际坐标（所查询时间的上条所在的坐标）不符合
 						if (lastX != nodesFinal[i].animal[j].origX || lastY != nodesFinal[i].animal[j].origY) {
-							self.result = "Conflict found at " + id;
-							console.log("Conflict found at " + id);
+							self.result = "Conflict found at " + nodesFinal[i].id;
+							console.log("Conflict found at " + nodesFinal[i].id);
 							return;
 						}
 						// 符合实际时，累加坐标值
