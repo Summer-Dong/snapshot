@@ -1,12 +1,12 @@
 <form role="form" ng-submit="main.getSnapshot()" >
 	<div class="col-md-6">
-	    <textarea name="historyData" cols="60" rows="25" ng-model="main.historyData"></textarea>
+		<label for="historyData">请输入historyData：</label>
+	    <textarea name="historyData" cols="40" rows="22" ng-model="main.historyData"></textarea>
 	</div>
 	<div class="col-md-6">
 		<label for="ID">请输入查询日期的ID：</label>
 		<input type="text" name="ID" ng-model="main.ID">
 		<button>查询</button>
-		<textarea name="result" id="" cols="60" rows="23" ng-model="main.result"></textarea>
+		<textarea name="result" cols="40" rows="20" ng-model="main.result" readonly="true"></textarea>
 	</div>
-
 </form>
