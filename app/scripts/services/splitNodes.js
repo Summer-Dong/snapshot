@@ -1,6 +1,7 @@
 angular.module('snapshotApp')
 	.service('splitNodes', ['$q','values', function($q, values) {
 		var self = this;
+		self.result = "";
 		self.splitNodes = function(nodes) {
 			var deferred = $q.defer();
 			//新建结点数组，保存结点被处理后的结点值
@@ -35,7 +36,7 @@ angular.module('snapshotApp')
 						//j==itemArray.length-1：判断的是cat1 10 9 2 -1 cat2的情况
 						if ((j - animalNameIndex) % 2 == 0 || (j - animalNameIndex == 1) || j == itemArray.length - 1) {
 							console.log(values.error);
-							vm.result = values.error;
+							self.result = values.error;
 							return;
 						}
 
@@ -55,7 +56,7 @@ angular.module('snapshotApp')
 							item.animal[animalName]['y'] = parseInt(itemArray[j]);
 						else {
 							console.log(values.error);
-							vm.result = values.error;
+							self.result = values.error;
 							return;
 						}
 					} //数值结点判断结束
@@ -64,7 +65,7 @@ angular.module('snapshotApp')
 				//当最后一个动物的记录格式有错时：animalName后边的属性个数为奇数时的判断
 				if ((itemArray.length - animalNameIndex) % 2 == 0) {
 					console.log(values.error);
-					vm.result = values.error;
+					self.result = values.error;
 				}
 				// 处理完每个结点后push到最终数组中
 				nodesFinal.push(item);

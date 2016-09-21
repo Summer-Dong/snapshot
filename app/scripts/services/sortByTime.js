@@ -1,5 +1,5 @@
 angular.module('snapshotApp')
-	.service('sortByTime', ['$q', 'values', function($q, values) {
+	.service('sortByTime', ['$q', function($q) {
 		var self = this;
 		self.bubbleSort = function(nodesFinal) {
 			var deferred = $q.defer();
