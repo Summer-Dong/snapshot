@@ -1,10 +1,9 @@
 angular.module('snapshotApp')
-	.service('splitNodes', ['$q','values', function($q, values) {
+	.service('splitNodes', ['values', function(values) {
 		var self = this;
 		
 		self.splitNodes = function(nodes) {
 			self.result = "";
-			var deferred = $q.defer();
 			//新建结点数组，保存结点被处理后的结点值
 			var nodesFinal = [];
 
@@ -71,9 +70,7 @@ angular.module('snapshotApp')
 				// 处理完每个结点后push到最终数组中
 				nodesFinal.push(item);
 			} 
-
-			deferred.resolve(nodesFinal);
-			return deferred.promise;
+			self.nodesFinal = nodesFinal;
 		};
 
 	}]);

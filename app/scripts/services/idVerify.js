@@ -1,11 +1,10 @@
 angular.module('snapshotApp')
-	.service('idVerify', ['$q', function($q) {
+	.service('idVerify', [function() {
 		var self = this;
 		
 		/*对输入的id验证合法性*/
 		self.idVerify = function(nodesFinal, id) {
 			self.result = "";
-			var deferred = $q.defer();
 			//判断输入id所位于的结点，如果没有找到，报错。
 			self.idIndex;
 			var i;
@@ -21,8 +20,5 @@ angular.module('snapshotApp')
 				console.log("Invalid id.");
 				return;
 			}
-
-			deferred.resolve(nodesFinal);
-			return deferred.promise;
 		};
 	}]);
