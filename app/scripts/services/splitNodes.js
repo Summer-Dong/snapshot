@@ -1,8 +1,9 @@
 angular.module('snapshotApp')
 	.service('splitNodes', ['$q','values', function($q, values) {
 		var self = this;
-		self.result = "";
+		
 		self.splitNodes = function(nodes) {
+			self.result = "";
 			var deferred = $q.defer();
 			//新建结点数组，保存结点被处理后的结点值
 			var nodesFinal = [];
