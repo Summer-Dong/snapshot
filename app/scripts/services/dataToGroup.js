@@ -1,14 +1,12 @@
 angular.module('snapshotApp')
-	.service('dataToGroup', ['$q', function($q) {
+	.service('dataToGroup', ['$q','values', function($q, values) {
 		var self = this;
 
 		/*将historyData拆分成nodes数组*/
 		self.getNodes = function(historyData) {
 			var deferred = $q.defer();
-			// 时间的正则表达式
-			var timeRegExp = RegExp(/[1-9][0-9]{3}\/[0-1][0-9]\/[0-3][0-9] [0-9]{2}:[0-9]{2}:[0-9]{2}/g);
 			// 获得时间组成的数组
-			var timeArray = historyData.match(timeRegExp);
+			var timeArray = historyData.match(values.timeRegExp);
 			// 获得时间id的长度
 			var idLength = historyData.indexOf(timeArray[0]);
 
