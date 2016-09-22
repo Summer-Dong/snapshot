@@ -19,7 +19,7 @@ angular.module('snapshotApp')
 						var lastY = self.animalStatus[j].y;
 						//累加的坐标与实际坐标（所查询时间的上条所在的坐标）不符合
 						if (lastX != nodesFinal[i].animal[j].origX || lastY != nodesFinal[i].animal[j].origY) {
-							self.result = "Conflict found at " + nodesFinal[i].id;
+							self.result = "Conflict found at\n" + nodesFinal[i].id + ".";
 							console.log("Conflict found at " + nodesFinal[i].id);
 							return;
 						}
@@ -34,7 +34,7 @@ angular.module('snapshotApp')
 
 						//新动物进入标记区域时，却在结点记录中有坐标变化量'x'或'y'时，则此条记录出错
 						if (('x' in nodesFinal[i].animal[j]) || ('y' in nodesFinal[i].animal[j])) {
-							self.result = "Conflict found at " + id;
+							self.result = "Conflict found at " + id + ".";
 							console.log("Conflict found at " + id);
 							return;
 						}
