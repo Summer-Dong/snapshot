@@ -1,8 +1,13 @@
 # 动物群体研究坐标快照[![Build Status](https://travis-ci.org/Summer-Dong/snapshot.svg?branch=master)](https://travis-ci.org/Summer-Dong/snapshot)
 
-### 1 项目简介
+<br/>
 
- **项目地址：**[https://github.com/Summer-Dong/snapshot](https://github.com/Summer-Dong/snapshot)
+
+## 1 项目简介
+
+ **项目地址：**
+
+ [https://github.com/Summer-Dong/snapshot](https://github.com/Summer-Dong/snapshot)
 
  **项目框架:**
 
@@ -10,21 +15,24 @@
   
  **开发工具:**
 
-  NodeJS + grunt + bower + karma 
+  Node + grunt + bower + karma 
   
  **运行项目:**
 
-  命令行进入项目主目录snapShot，在运行机器上已安装Node.js、grunt、bower、karma的前提下命令行输入：
+  命令行进入项目主目录snapShot，在运行机器上已安装Node、grunt、bower、karma的前提下命令行输入：
 
+		npm install
+		bower install
 		grunt serve
+
 
  **单元测试:**
 
   命令行进入项目主目录snapShot，在运行机器上已安装Node.js、grunt、karma的前提下命令行输入：
 
 		grunt 
-
-### 2 项目说明：
+<br/>
+## 2 项目说明：
 
  **操作提示：**
 
