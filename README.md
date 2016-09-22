@@ -21,16 +21,16 @@
 
   命令行进入项目主目录snapShot，在运行机器上已安装Node、grunt、bower、karma的前提下命令行输入：
 
-		npm install
-		bower install
-		grunt serve
+		$ npm install
+		$ bower install
+		$ grunt serve
 
 
  **单元测试:**
 
   命令行进入项目主目录snapShot，在运行机器上已安装Node.js、grunt、karma的前提下命令行输入：
 
-		grunt 
+		$ grunt 
 <br/>
 ## 2 项目说明：
 
