@@ -17,7 +17,7 @@ angular.module('snapshotApp')
 
 				/*对每个结点都分割成id, date, animal*/
 				// 对每个结点针对空格和换行符进行分割,可对正则表达式进行扩展
-				var itemArray = nodes[i].split(/[ \n]/g);
+				var itemArray = nodes[i].split(/[ \n]+/g);
 				// 初始化结点对象
 				var item = {
 					id: itemArray[0],

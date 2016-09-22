@@ -11,13 +11,14 @@ angular.module('snapshotApp')
 
 			self.nodes = [];
 			//由于通过i+1与i的差来获取每个结点值，所以当i为末尾时，没有i+i，因此这里排除i为末尾的情况。
+			//正则表达式用于替换结点前后的空格或者换行符
 			for (var i = 0; i < timeArray.length - 1; i++) {
 				var start = historyData.indexOf(timeArray[i]) - idLength;
 				var end = historyData.indexOf(timeArray[i + 1]) - idLength;
-				self.nodes.push(historyData.substring(start, end - 1));
+				self.nodes.push(historyData.substring(start, end - 1).replace(/(^\s*)|(\s*$)/g, ""));
 			}
 			//单独处理i在末尾的情况
 			var start = historyData.indexOf(timeArray[i]) - idLength;
-			self.nodes.push(historyData.substring(start));
+			self.nodes.push(historyData.substring(start).replace(/(^\s*)|(\s*$)/g, ""));
 		};
 	}]);
