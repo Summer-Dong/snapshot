@@ -28,7 +28,7 @@
 
  **单元测试:**
 
-  命令行进入项目主目录snapShot，在运行机器上已安装Node.js、grunt、karma的前提下命令行输入：
+  命令行进入项目主目录snapShot，在运行机器上已安装Node、grunt、karma的前提下命令行输入：
 
 		$ grunt 
 <br/>
