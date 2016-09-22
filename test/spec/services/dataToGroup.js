@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Service: normalServ', function() {
+describe('Unit Test of Service: dataToGroup', function() {
 
 	beforeEach(module('snapshotApp'));
 
