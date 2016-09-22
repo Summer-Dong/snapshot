@@ -14,7 +14,8 @@ angular.module('snapshotApp')
 
 			//拆分每个结点
 			splitNodes.splitNodes(dataToGroup.nodes);
-			vm.result = (vm.result != "" ? vm.result : splitNodes.result);	
+			vm.result = (vm.result != "" ? vm.result : splitNodes.result);
+			if(vm.result != "")	{return;}
 			
 			//按照时间对结点冒泡排序
 			sortByTime.bubbleSort(splitNodes.nodesFinal);
@@ -22,10 +23,12 @@ angular.module('snapshotApp')
 			//对输入的id验证合法性
 			idVerify.idVerify(sortByTime.nodesFinal, vm.ID);
 			vm.result = (vm.result != "" ? vm.result : idVerify.result);
+			if(vm.result != "")	{return;}
 					
 			//计算动物在所输入时间的位置
 			calcuPos.position(sortByTime.nodesFinal, vm.ID);
 			vm.result = (vm.result != "" ? vm.result : calcuPos.result);
+			if(vm.result != "")	{return;}
 			
 			/*按照动物名字排序输出*/
 			sortByAnimalName.sortByName(calcuPos.animalStatus);
