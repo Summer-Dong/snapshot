@@ -3,12 +3,10 @@
 angular.module('snapshotApp')
 	.controller('MainCtrl', ['dataToGroup', 'splitNodes', 'sortByTime', 'idVerify', 'calcuPos', 'sortByAnimalName', function(dataToGroup, splitNodes, sortByTime, idVerify, calcuPos, sortByAnimalName) {
 		var vm = this;
-		vm.historyData = "e4e87cb2-8e9a-4749-abb6-26c59344dfee\n2016/09/02 22:30:46\ncat1 10 9\n351055db-33e6-4f9b-bfe1-16f1ac446ac1\n2016/09/02 22:30:52\ncat1 10 9 2 -1\ncat2 2 3\ndcfa0c7a-5855-4ed2-bc8c-4accae8bd155\n2016/09/02 22:31:02\ncat1 12 8 3 4";
+		vm.historyData = "";
 		vm.ID = "";
 
-		vm.getSnapshot = function(historyData, id) {
-			vm.historyData = historyData;
-			vm.id = id;
+		vm.getSnapshot = function() {
 			vm.result = "";
 
 			/*将historyData拆分成nodes数组*/
