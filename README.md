@@ -21,7 +21,7 @@
 
   命令行进入项目主目录snapShot，在运行机器上已安装Node的前提下命令行输入：
 
-       $ npm install -g grunt bower 
+        $ npm install -g grunt bower 
 		$ npm install
 		$ bower install
 		$ grunt serve
