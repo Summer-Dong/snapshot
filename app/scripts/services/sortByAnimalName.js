@@ -5,7 +5,6 @@ angular.module('snapshotApp')
 		/*按照动物名字排序输出*/
 		self.sortByName = function(animalStatus) {
 			self.result = "";
-			
 			var aniStaInOrder = [];
 			for (var i in animalStatus) {
 				aniStaInOrder.push(i);

@@ -7,11 +7,10 @@ angular.module('snapshotApp')
 			self.result = "";
 			//判断输入id所位于的结点，如果没有找到，报错。
 			self.idIndex;
-			var i;
-			for (i = 0; i < nodesFinal.length; i++) {
+			for (var i = 0; i < nodesFinal.length; i++) {
 				if (nodesFinal[i].id == id) {
 					self.idIndex = i;
-					break;
+					return;
 				}
 			}
 			//输入id没有找到
