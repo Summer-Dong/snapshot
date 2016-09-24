@@ -16,6 +16,6 @@ describe('Unit Test of Service: sortByAnimalName', function() {
 		// when
 		sortByAnimalName.sortByName(animalStatus);
 		// then
-		expect(sortByAnimalName.result).toBe("cat1 15 12\ncat2 5 2\n");
+		expect(sortByAnimalName.result).toBe("cat1 15 12 undefined undefined\ncat2 5 2 undefined undefined\n");
 	});
 });

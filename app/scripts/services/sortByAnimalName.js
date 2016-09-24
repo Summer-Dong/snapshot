@@ -13,7 +13,7 @@ angular.module('snapshotApp')
 			var maxAdd = 0;
 			for (var i = 0; i < aniStaInOrder.length; i++) {
 				self.result += (aniStaInOrder[i] + " " + animalStatus[aniStaInOrder[i]].x + " " + animalStatus[aniStaInOrder[i]].y + " " + animalStatus[aniStaInOrder[i]].originX + ' '+ animalStatus[aniStaInOrder[i]].originY + '\n');
-				if(maxAdd< aniStaInOrder[i] 
+				// if(maxAdd< aniStaInOrder[i] 
 			}
 		};
 	}]);
