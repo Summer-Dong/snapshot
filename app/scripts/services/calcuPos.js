@@ -26,8 +26,7 @@ angular.module('snapshotApp')
 						// 符合实际时，累加坐标值
 						self.animalStatus[j].x += nodesFinal[i].animal[j].x;
 						self.animalStatus[j].y += nodesFinal[i].animal[j].y;
-						self.animalStatus[j]['addX'] += nodesFinal[i].animal[j].x;
-						self.animalStatus[j]['addY'] += nodesFinal[i].animal[j].y;
+						self.animalStatus[j]['add'] += Math.sqrt((nodesFinal[i].animal[j].x)*(nodesFinal[i].animal[j].x) + (nodesFinal[i].animal[j].y)*(nodesFinal[i].animal[j].y));
 
 					} else {
 						//有新动物时添加记录
@@ -46,10 +45,7 @@ angular.module('snapshotApp')
 						}
 					}
 				}
-				// for(var k in self.animalStatus[k]){
-				// 	self.animalStatus[k]['add'] = (self.animalStatus[k]['addX'])*(animalStatus[k]['addX'])+(self.animalStatus[k]['addY'])*(animalStatus[k]['addY']);
-				// }
-
+				
 			};
 		};
 	}]);
