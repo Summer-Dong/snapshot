@@ -26,11 +26,17 @@ angular.module('snapshotApp')
 						// 符合实际时，累加坐标值
 						self.animalStatus[j].x += nodesFinal[i].animal[j].x;
 						self.animalStatus[j].y += nodesFinal[i].animal[j].y;
+						self.animalStatus[j]['addX'] += nodesFinal[i].animal[j].x;
+						self.animalStatus[j]['addY'] += nodesFinal[i].animal[j].y;
+
 					} else {
 						//有新动物时添加记录
 						self.animalStatus[j] = {};
 						self.animalStatus[j]['x'] = nodesFinal[i].animal[j].origX;
 						self.animalStatus[j]['y'] = nodesFinal[i].animal[j].origY;
+						self.animalStatus[j]['originX'] = nodesFinal[i].animal[j].origX;
+						self.animalStatus[j]['originY'] = nodesFinal[i].animal[j].origY;
+
 
 						//新动物进入标记区域时，却在结点记录中有坐标变化量'x'或'y'时，则此条记录出错
 						if (('x' in nodesFinal[i].animal[j]) || ('y' in nodesFinal[i].animal[j])) {
@@ -40,6 +46,10 @@ angular.module('snapshotApp')
 						}
 					}
 				}
+				// for(var k in self.animalStatus[k]){
+				// 	self.animalStatus[k]['add'] = (self.animalStatus[k]['addX'])*(animalStatus[k]['addX'])+(self.animalStatus[k]['addY'])*(animalStatus[k]['addY']);
+				// }
+
 			};
 		};
 	}]);
