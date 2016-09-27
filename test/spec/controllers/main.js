@@ -21,7 +21,7 @@ describe('Controller: MainCtrl', function() {
         MainCtrl.ID = "dcfa0c7a-5855-4ed2-bc8c-4accae8bd155";
         MainCtrl.getSnapshot();
         // then
-        expect(MainCtrl.result).toBe("cat1 15 12 10 9\ncat2 2 3 2 3\n");
+        expect(MainCtrl.result).toBe("cat1 15 12 10 9\ncat2 2 3 2 3\ncat1\n");
     });
 
     //当输入的数据缺少某动物的一个坐标值或者坐标变化值时，得到格式错误的提示 

@@ -26,8 +26,9 @@ angular.module('snapshotApp')
 						// 符合实际时，累加坐标值
 						self.animalStatus[j].x += nodesFinal[i].animal[j].x;
 						self.animalStatus[j].y += nodesFinal[i].animal[j].y;
-						self.animalStatus[j]['add'] += Math.sqrt((nodesFinal[i].animal[j].x)*(nodesFinal[i].animal[j].x) + (nodesFinal[i].animal[j].y)*(nodesFinal[i].animal[j].y));
+						var addXY = (nodesFinal[i].animal[j].x)*(nodesFinal[i].animal[j].x) + (nodesFinal[i].animal[j].y)*(nodesFinal[i].animal[j].y);
 
+						self.animalStatus[j]['add'] += Math.sqrt(addXY);
 					} else {
 						//有新动物时添加记录
 						self.animalStatus[j] = {};
@@ -35,7 +36,7 @@ angular.module('snapshotApp')
 						self.animalStatus[j]['y'] = nodesFinal[i].animal[j].origY;
 						self.animalStatus[j]['originX'] = nodesFinal[i].animal[j].origX;
 						self.animalStatus[j]['originY'] = nodesFinal[i].animal[j].origY;
-
+						self.animalStatus[j]['add'] = 0;
 
 						//新动物进入标记区域时，却在结点记录中有坐标变化量'x'或'y'时，则此条记录出错
 						if (('x' in nodesFinal[i].animal[j]) || ('y' in nodesFinal[i].animal[j])) {
