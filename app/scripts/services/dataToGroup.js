@@ -1,9 +1,9 @@
 angular.module('snapshotApp')
-	.service('dataToGroup', ['values', function(values) {
+	.service('dataToGroup', function() {
 		var self = this;
 
 		/*将historyData拆分成nodes数组*/
-		self.getNodes = function(historyData) {
+		self.getNodes = function(historyData, timeRegExp) {
 			// 替换字符串中首尾的空白符
 			historyData.replace(/(^\s*)|(\s*$)/g, "");
 			// 对字符串按照所有类型的空白字符进行分割，得到数组
@@ -12,7 +12,7 @@ angular.module('snapshotApp')
 			historyData = tempData.join(" ");
 
 			// 获得时间组成的数组
-			var timeArray = historyData.match(values.timeRegExp);
+			var timeArray = historyData.match(timeRegExp);
 			// 获得时间id的长度
 			var idLength = historyData.indexOf(timeArray[0]);
 
@@ -28,4 +28,4 @@ angular.module('snapshotApp')
 			var start = historyData.indexOf(timeArray[i]) - idLength;
 			self.nodes.push(historyData.substring(start));
 		};
-	}]);
+	});

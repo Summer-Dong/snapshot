@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snapshotApp')
-	.controller('MainCtrl', ['dataToGroup', 'splitNodes', 'sortByTime', 'idVerify', 'calcuPos', 'sortByAnimalName', function(dataToGroup, splitNodes, sortByTime, idVerify, calcuPos, sortByAnimalName) {
+	.controller('MainCtrl', ['dataToGroup', 'splitNodes', 'sortByTime', 'idVerify', 'calcuPos', 'sortByAnimalName', 'values', function(dataToGroup, splitNodes, sortByTime, idVerify, calcuPos, sortByAnimalName, values) {
 		var vm = this;
 		vm.historyData = "";
 		vm.ID = "";
@@ -10,10 +10,10 @@ angular.module('snapshotApp')
 			vm.result = "";
 
 			/*将historyData拆分成nodes数组*/
-			dataToGroup.getNodes(vm.historyData);
+			dataToGroup.getNodes(vm.historyData, values.timeRegExp);
 
 			//拆分每个结点
-			splitNodes.splitNodes(dataToGroup.nodes);
+			splitNodes.splitNodes(dataToGroup.nodes, values.timeRegExp, values.error);
 			vm.result = (vm.result != "" ? vm.result : splitNodes.result);
 			if(vm.result != "")	{return;}
 			
@@ -26,7 +26,7 @@ angular.module('snapshotApp')
 			if(vm.result != "")	{return;}
 					
 			//计算动物在所输入时间的位置
-			calcuPos.position(sortByTime.nodesFinal, vm.ID);
+			calcuPos.position(sortByTime.nodesFinal, vm.ID, idVerify.idIndex);
 			vm.result = (vm.result != "" ? vm.result : calcuPos.result);
 			if(vm.result != "")	{return;}
 			

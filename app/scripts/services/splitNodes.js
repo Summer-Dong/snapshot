@@ -1,8 +1,8 @@
 angular.module('snapshotApp')
-	.service('splitNodes', ['values', function(values) {
+	.service('splitNodes', function() {
 		var self = this;
 		
-		self.splitNodes = function(nodes) {
+		self.splitNodes = function(nodes, timeRegExp, error) {
 			self.result = "";
 			//新建结点数组，保存结点被处理后的结点值
 			var nodesFinal = [];
@@ -11,7 +11,7 @@ angular.module('snapshotApp')
 			for (var i = 0; i < nodes.length; i++) {
 
 				/*将每个结点中的时间字符串替换成秒数值*/
-				var slicetime = nodes[i].match(values.timeRegExp);
+				var slicetime = nodes[i].match(timeRegExp);
 				var time = (new Date(slicetime)).getTime();
 				nodes[i] = nodes[i].replace(slicetime, time.toString()); 
 
@@ -35,8 +35,8 @@ angular.module('snapshotApp')
 						//(j - animalNameIndex == 1)：判断的是cat1 cat2 2 3 的情况
 						//j==itemArray.length-1：判断的是cat1 10 9 2 -1 cat2的情况
 						if ((j - animalNameIndex) % 2 == 0 || (j - animalNameIndex == 1) || j == itemArray.length - 1) {
-							console.log(values.error);
-							self.result = values.error;
+							console.log(error);
+							self.result = error;
 							return;
 						}
 
@@ -55,8 +55,8 @@ angular.module('snapshotApp')
 						else if (j - animalNameIndex == 4)
 							item.animal[animalName]['y'] = parseInt(itemArray[j]);
 						else {
-							console.log(values.error);
-							self.result = values.error;
+							console.log(error);
+							self.result = error;
 							return;
 						}
 					} //数值结点判断结束
@@ -64,8 +64,8 @@ angular.module('snapshotApp')
 
 				//当最后一个动物的记录格式有错时：animalName后边的属性个数为奇数时的判断
 				if ((itemArray.length - animalNameIndex) % 2 == 0) {
-					console.log(values.error);
-					self.result = values.error;
+					console.log(error);
+					self.result = error;
 				}
 				// 处理完每个结点后push到最终数组中
 				nodesFinal.push(item);
@@ -73,4 +73,4 @@ angular.module('snapshotApp')
 			self.nodesFinal = nodesFinal;
 		};
 
-	}]);
+	});

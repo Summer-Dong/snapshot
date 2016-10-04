@@ -1,5 +1,5 @@
 angular.module('snapshotApp')
-	.service('sortByAnimalName', [function() {
+	.service('sortByAnimalName', function() {
 		var self = this;
 
 		/*按照动物名字排序输出*/
@@ -21,4 +21,4 @@ angular.module('snapshotApp')
 			}
 			self.result += maxAddName + "\n";
 		};
-	}]);
+	});

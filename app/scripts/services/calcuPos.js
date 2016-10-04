@@ -1,14 +1,14 @@
 angular.module('snapshotApp')
-	.service('calcuPos', ['idVerify', function(idVerify) {
+	.service('calcuPos', function() {
 		var self = this;
 		
 		/*计算动物在所输入时间的位置*/
-		self.position = function(nodesFinal, id) {
+		self.position = function(nodesFinal, id, idIndex) {
 			self.result = "";
 			
 			self.animalStatus = {};
 			//遍历到对所查询时间
-			for (var i = 0; i <= idVerify.idIndex; i++) {
+			for (var i = 0; i <= idIndex; i++) {
 				// var tt=nodesFinal[i].animal;
 				//遍历单个节点中所有动物
 				for (var j in nodesFinal[i].animal) {
@@ -49,4 +49,4 @@ angular.module('snapshotApp')
 				
 			};
 		};
-	}]);
+	});

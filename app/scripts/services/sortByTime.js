@@ -1,5 +1,5 @@
 angular.module('snapshotApp')
-	.service('sortByTime', [function() {
+	.service('sortByTime', function() {
 		var self = this;
 		self.bubbleSort = function(nodesFinal) {
 			//按照时间对结点冒泡排序
@@ -15,4 +15,4 @@ angular.module('snapshotApp')
 			}
 			self.nodesFinal = nodesFinal;
 		};
-	}]);
+	});
